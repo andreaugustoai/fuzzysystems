@@ -168,7 +168,7 @@ function renderCompany(d) {
     </div>` : ""}
   `;
 
-  chatSub.textContent = `Oportunidades para ${truncate(name, 40)}`;
+  chatSub.textContent = `Analisando oportunidades para ${truncate(name, 40)}`;
 }
 
 // --- Chat -----------------------------------------------------------------
