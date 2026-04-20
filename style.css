@@ -628,6 +628,11 @@ main { flex: 1; }
   color: var(--muted);
   font-size: 0.9rem;
 }
+.footer-cnpj {
+  font-size: 0.8rem;
+  color: var(--muted-2);
+  margin-top: 0.4rem;
+}
 .footer-bottom {
   padding-top: 1.25rem;
   border-top: 1px solid var(--border);
