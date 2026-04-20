@@ -260,7 +260,7 @@ function appendMessage(role, text, thinking = false) {
   el.className = "msg " + role + (thinking ? " thinking" : "");
   if (role === "assistant") {
     el.innerHTML = thinking
-      ? `<div class="msg-label">Fuzzy</div><div>Analisando...</div>`
+      ? `<div class="msg-label">Fuzzy<span class="typing-dots"><span></span><span></span><span></span></span></div>`
       : `<div class="msg-label">Fuzzy</div><div class="msg-body">${renderMarkdown(text)}</div>`;
   } else {
     el.textContent = text;
