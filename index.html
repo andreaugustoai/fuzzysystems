@@ -36,6 +36,7 @@
 
 <!-- LANDING (visible before CNPJ submit) -->
 <section class="stage stage-landing" id="stageLanding">
+  <canvas class="neural-canvas" id="neuralCanvas" aria-hidden="true"></canvas>
   <div class="container">
     <div class="eyebrow">Diagnóstico em minutos</div>
     <h1 class="display">
@@ -123,6 +124,7 @@
   document.getElementById('year').textContent = new Date().getFullYear();
 </script>
 <script src="/app.js"></script>
+<script src="/neural.js" defer></script>
 
 </body>
 </html>
