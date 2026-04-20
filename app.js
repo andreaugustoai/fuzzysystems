@@ -25,6 +25,7 @@ const chatSub = $("chatSub");
 const brand = $("brand");
 
 // --- State ----------------------------------------------------------------
+const MAX_USER_MESSAGES = 15;
 let companyData = null;
 let messages = []; // {role, content}
 let sessionToken = null;
@@ -176,10 +177,25 @@ chatForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const text = chatInput.value.trim();
   if (!text) return;
+  const userCount = messages.filter(m => m.role === "user").length;
+  if (userCount >= MAX_USER_MESSAGES) {
+    lockChat();
+    return;
+  }
   chatInput.value = "";
   chatInput.style.height = "auto";
   await sendMessage(text, false);
+  // lock after the assistant finishes if we just hit the cap
+  if (messages.filter(m => m.role === "user").length >= MAX_USER_MESSAGES) {
+    lockChat();
+  }
 });
+
+function lockChat() {
+  chatInput.disabled = true;
+  chatSend.disabled = true;
+  chatInput.placeholder = "Chegamos no limite desta conversa. Escreva para contato@fuzzysystems.com.br.";
+}
 
 chatInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter" && !e.shiftKey) {
