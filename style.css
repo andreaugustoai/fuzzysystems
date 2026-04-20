@@ -440,9 +440,13 @@ main { flex: 1; }
   padding: 1.25rem 1.75rem;
   border-bottom: 1px solid var(--border);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 1rem;
+}
+.chat-header > div:first-child {
+  flex: 1;
+  min-width: 0;
 }
 .chat-title {
   font-family: var(--font-serif);
@@ -454,7 +458,10 @@ main { flex: 1; }
   font-size: 0.85rem;
   color: var(--muted);
   margin-top: 0.15rem;
+  line-height: 1.4;
+  word-break: break-word;
 }
+.btn-ghost-sm { flex-shrink: 0; }
 .chat-messages {
   flex: 1;
   overflow-y: auto;

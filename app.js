@@ -108,7 +108,7 @@ function enterWorkspace(data) {
   landing.hidden = true;
   workspace.hidden = false;
   const name = data?.company?.name || data?.alias || "sua empresa";
-  chatSub.textContent = `Analisando oportunidades para ${truncate(name, 40)}`;
+  chatSub.textContent = `Analisando oportunidades para ${name}`;
   messages = [];
   chatMessages.innerHTML = "";
   sessionToken = newSessionToken();
