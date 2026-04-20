@@ -181,6 +181,7 @@ async function sendMessage(userText, isInitial) {
     const decoder = new TextDecoder("utf-8");
     let full = "";
     let buffer = "";
+    let errorFromStream = null;
     assistantEl.innerHTML = `<div class="msg-label">Fuzzy</div><div class="msg-body"></div><span class="cursor"></span>`;
     const bodyEl = assistantEl.querySelector(".msg-body");
     const cursorEl = assistantEl.querySelector(".cursor");
@@ -196,6 +197,10 @@ async function sendMessage(userText, isInitial) {
         if (!payload || payload === "[DONE]") continue;
         try {
           const chunk = JSON.parse(payload);
+          if (chunk.error) {
+            errorFromStream = chunk.error;
+            continue;
+          }
           const delta = chunk.choices?.[0]?.delta?.content || chunk.delta || "";
           if (delta) {
             full += delta;
@@ -206,7 +211,15 @@ async function sendMessage(userText, isInitial) {
       }
     }
     cursorEl?.remove();
-    messages.push({ role: "assistant", content: full });
+    if (!full.trim()) {
+      // stream ended without content — show something instead of silent void
+      const reason = errorFromStream
+        ? (errorFromStream === "rate-limit" ? "Limite de mensagens atingido. Espera uns minutos." : `Erro: ${errorFromStream}`)
+        : "A análise não retornou conteúdo. Tenta de novo clicando em Enviar, ou manda uma pergunta.";
+      assistantEl.innerHTML = `<div class="msg-label">Fuzzy</div><div class="msg-body"><em>${escapeHTML(reason)}</em></div>`;
+    } else {
+      messages.push({ role: "assistant", content: full });
+    }
   } catch (err) {
     assistantEl.classList.remove("thinking");
     assistantEl.innerHTML = `<div class="msg-label">Erro</div><div>Falha na comunicação com o servidor: ${escapeHTML(err.message)}. Tente novamente.</div>`;
