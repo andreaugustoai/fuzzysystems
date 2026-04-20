@@ -294,6 +294,9 @@ main { flex: 1; }
   gap: 1.5rem;
   align-items: start;
 }
+.workspace-single {
+  max-width: 820px;
+}
 
 /* --- Company panel ------------------------------------------------------ */
 .company-panel {

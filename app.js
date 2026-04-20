@@ -15,7 +15,6 @@ const cnpjForm = $("cnpjForm");
 const cnpjInput = $("cnpj");
 const cnpjHint = $("cnpjHint");
 const submitBtn = $("cnpjSubmit");
-const companyPanel = $("companyPanel");
 const chatMessages = $("chatMessages");
 const chatForm = $("chatForm");
 const chatInput = $("chatInput");
@@ -108,69 +107,15 @@ cnpjForm.addEventListener("submit", async (e) => {
 function enterWorkspace(data) {
   landing.hidden = true;
   workspace.hidden = false;
-  renderCompany(data);
+  const name = data?.company?.name || data?.alias || "sua empresa";
+  chatSub.textContent = `Analisando oportunidades para ${truncate(name, 40)}`;
   messages = [];
   chatMessages.innerHTML = "";
   sessionToken = newSessionToken();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function renderCompany(d) {
-  const name = d.company?.name || d.alias || "—";
-  const alias = d.alias && d.alias !== name ? d.alias : null;
-  const status = d.status?.text || "—";
-  const main = d.mainActivity;
-  const sides = d.sideActivities || [];
-  const size = d.company?.size?.text || "";
-  const nature = d.company?.nature?.text || "";
-  const city = d.address?.city || "";
-  const state = d.address?.state || "";
-  const founded = d.founded || "";
-
-  companyPanel.classList.remove("loading");
-  companyPanel.innerHTML = `
-    <div class="company-header">
-      <div class="company-name">${escapeHTML(name)}</div>
-      ${alias ? `<div class="company-alias">${escapeHTML(alias)}</div>` : ""}
-      <div class="company-status"><span class="status-dot"></span>${escapeHTML(status)}</div>
-    </div>
-
-    <div class="field-group">
-      <div class="field-label">Atividade principal</div>
-      <div class="field-value">
-        ${main ? `<div class="cnae-list"><li><span class="cnae-code">${main.id}</span><span>${escapeHTML(main.text)}</span></li></div>` : "—"}
-      </div>
-    </div>
-
-    ${sides.length > 0 ? `
-    <div class="field-group">
-      <div class="field-label">Atividades secundárias</div>
-      <ul class="cnae-list">
-        ${sides.slice(0, 8).map(s => `
-          <li><span class="cnae-code">${s.id}</span><span>${escapeHTML(s.text)}</span></li>
-        `).join("")}
-        ${sides.length > 8 ? `<li><span class="cnae-code">···</span><span>+${sides.length - 8} outras</span></li>` : ""}
-      </ul>
-    </div>` : ""}
-
-    <div class="field-group">
-      <div class="field-label">Localização</div>
-      <div class="field-value">${escapeHTML([city, state].filter(Boolean).join(" / ") || "—")}</div>
-    </div>
-
-    ${size ? `<div class="field-group">
-      <div class="field-label">Porte</div>
-      <div class="field-value">${escapeHTML(size)}</div>
-    </div>` : ""}
-
-    ${nature ? `<div class="field-group">
-      <div class="field-label">Natureza jurídica</div>
-      <div class="field-value">${escapeHTML(nature)}</div>
-    </div>` : ""}
-  `;
-
-  chatSub.textContent = `Analisando oportunidades para ${truncate(name, 40)}`;
-}
+// Company panel removed — Fuzzy mentions activities in her intro instead.
 
 // --- Chat -----------------------------------------------------------------
 chatForm.addEventListener("submit", async (e) => {
