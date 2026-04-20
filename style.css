@@ -587,29 +587,53 @@ main { flex: 1; }
 /* --- Footer ------------------------------------------------------------- */
 .footer {
   border-top: 1px solid var(--border);
-  padding: 1.5rem 0;
+  padding: 3rem 0 1.5rem;
   background: var(--bg);
   margin-top: auto;
-}
-.footer-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  flex-wrap: wrap;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--muted);
 }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.1fr 1.2fr;
+  gap: 2.5rem;
+  margin-bottom: 2.25rem;
+}
+.footer-col h4 {
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+.footer-col p {
+  line-height: 1.55;
+  margin: 0;
+}
+.footer-col a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.footer-col a:hover { color: var(--accent); }
 .footer-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.55rem;
   color: var(--fg);
   font-weight: 500;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
 }
-.footer-meta { display: flex; gap: 1.25rem; flex-wrap: wrap; }
-.footer-meta a { color: var(--muted); text-decoration: none; }
-.footer-meta a:hover { color: var(--fg); }
+.footer-tag {
+  max-width: 260px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.footer-bottom {
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--muted-2);
+}
 
 /* --- Responsive --------------------------------------------------------- */
 
@@ -740,13 +764,13 @@ main { flex: 1; }
   }
 
   /* Footer */
-  .footer { padding: 1.25rem 0; }
-  .footer-inner {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.6rem;
-    font-size: 0.82rem;
+  .footer { padding: 2rem 0 1.25rem; }
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.75rem;
+    margin-bottom: 1.5rem;
   }
+  .footer-brand-col { grid-column: 1 / -1; }
 }
 
 /* Very small screens */
