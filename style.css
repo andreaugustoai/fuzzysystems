@@ -138,6 +138,10 @@ main { flex: 1; }
   z-index: 0;
   opacity: 0.85;
 }
+.neural-canvas-bg {
+  opacity: 0.45;  /* faded, so it sits behind the chat/company cards */
+}
+.stage-workspace .container { position: relative; z-index: 1; }
 .stage-landing::before {
   content: "";
   position: absolute;
@@ -404,26 +408,26 @@ main { flex: 1; }
   overflow: hidden;
   position: relative;
 }
-/* subtle animated accent line at the top */
+/* animated accent line at the top of the chat */
 .chat-panel::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 1px;
+  height: 2px;
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(163, 0, 18, 0) 20%,
-    rgba(163, 0, 18, 0.55) 50%,
-    rgba(163, 0, 18, 0) 80%,
+    rgba(163, 0, 18, 0) 15%,
+    rgba(163, 0, 18, 0.95) 50%,
+    rgba(163, 0, 18, 0) 85%,
     transparent 100%
   );
   background-size: 200% 100%;
-  animation: chat-line-flow 6s linear infinite;
+  animation: chat-line-flow 4s linear infinite;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 @keyframes chat-line-flow {
   0%   { background-position: 200% 0; }
