@@ -27,6 +27,14 @@ const brand = $("brand");
 // --- State ----------------------------------------------------------------
 let companyData = null;
 let messages = []; // {role, content}
+let sessionToken = null;
+
+function newSessionToken() {
+  // Opaque random id persisted for this browsing session.
+  const bytes = new Uint8Array(24);
+  crypto.getRandomValues(bytes);
+  return Array.from(bytes).map(b => b.toString(16).padStart(2, "0")).join("");
+}
 
 // --- CNPJ helpers ---------------------------------------------------------
 function formatCNPJ(v) {
@@ -102,6 +110,7 @@ function enterWorkspace(data) {
   renderCompany(data);
   messages = [];
   chatMessages.innerHTML = "";
+  sessionToken = newSessionToken();
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
@@ -192,6 +201,7 @@ async function sendMessage(userText, isInitial) {
 
   const assistantEl = appendMessage("assistant", "", true);
   const body = {
+    session_token: sessionToken,
     company: companyData,
     messages,
     initial: !!isInitial,
