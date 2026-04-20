@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fuzzy Systems — IA para o seu CNPJ</title>
+<meta name="description" content="Digite seu CNPJ e converse com nossa IA sobre oportunidades concretas de aplicação de inteligência artificial na sua empresa." />
+<meta name="theme-color" content="#a30012" />
+
+<meta property="og:title" content="Fuzzy Systems — IA para o seu CNPJ" />
+<meta property="og:description" content="Descubra onde IA pode entregar valor na sua empresa. Análise via CNPJ." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://fuzzysystems.com.br" />
+
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand" id="brand">
+      <span class="brand-mark"></span>
+      <span class="brand-name">Fuzzy Systems</span>
+    </a>
+    <nav class="nav-links">
+      <a href="mailto:contato@fuzzysystems.com.br">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- LANDING (visible before CNPJ submit) -->
+<section class="stage stage-landing" id="stageLanding">
+  <div class="container">
+    <div class="eyebrow">Diagnóstico em minutos</div>
+    <h1 class="display">
+      Onde a <span class="accent">IA</span> pode entregar valor<br />
+      na <span class="accent">sua empresa</span>?
+    </h1>
+    <p class="lede">
+      Coloque o CNPJ. A gente puxa as atividades registradas, conversa com você e aponta oportunidades concretas de aplicação de inteligência artificial — sem fórmula pronta, sem promessa vaga.
+    </p>
+
+    <form class="cnpj-form" id="cnpjForm" autocomplete="off">
+      <div class="cnpj-input-wrap">
+        <label for="cnpj" class="cnpj-label">CNPJ</label>
+        <input
+          type="text"
+          id="cnpj"
+          inputmode="numeric"
+          placeholder="00.000.000/0000-00"
+          maxlength="18"
+          required
+        />
+      </div>
+      <button type="submit" class="btn btn-primary" id="cnpjSubmit">
+        <span class="btn-text">Analisar</span>
+        <span class="btn-arrow">→</span>
+      </button>
+    </form>
+
+    <p class="cnpj-hint" id="cnpjHint">Dados públicos via Receita Federal. Não armazenamos.</p>
+  </div>
+</section>
+
+<!-- WORKSPACE (appears after CNPJ submit) -->
+<section class="stage stage-workspace" id="stageWorkspace" hidden>
+  <div class="container workspace-grid">
+
+    <aside class="company-panel" id="companyPanel">
+      <!-- Company info injected by JS -->
+    </aside>
+
+    <section class="chat-panel" id="chatPanel">
+      <div class="chat-header">
+        <div>
+          <div class="chat-title">Conversa com a IA</div>
+          <div class="chat-sub" id="chatSub">Oportunidades para a sua operação</div>
+        </div>
+        <button class="btn-ghost-sm" id="resetBtn" title="Começar de novo">
+          Novo CNPJ
+        </button>
+      </div>
+
+      <div class="chat-messages" id="chatMessages"></div>
+
+      <form class="chat-form" id="chatForm">
+        <textarea
+          id="chatInput"
+          placeholder="Pergunte ou descreva uma dor operacional..."
+          rows="2"
+        ></textarea>
+        <button type="submit" class="btn btn-primary chat-send" id="chatSend">
+          <span class="btn-text">Enviar</span>
+        </button>
+      </form>
+    </section>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark small"></span>
+      <span>Fuzzy Systems</span>
+    </div>
+    <div class="footer-meta">
+      <a href="mailto:contato@fuzzysystems.com.br">contato@fuzzysystems.com.br</a>
+      <span>&copy; <span id="year"></span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+<script src="/app.js"></script>
+
+</body>
+</html>
