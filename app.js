@@ -67,7 +67,7 @@ cnpjInput.addEventListener("input", (e) => {
   e.target.value = formatCNPJ(e.target.value);
   cnpjInput.classList.remove("error");
   cnpjHint.classList.remove("error");
-  cnpjHint.textContent = "Dados públicos via Receita Federal. Não armazenamos.";
+  cnpjHint.textContent = "";
 });
 
 // --- Submit ---------------------------------------------------------------
