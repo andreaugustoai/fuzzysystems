@@ -1,3 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="12" y="12" width="40" height="40" rx="4" fill="#a30012" transform="rotate(45 32 32)"/>
+  <defs>
+    <filter id="fuzzy" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3"/>
+    </filter>
+  </defs>
+  <line x1="8" y1="32" x2="56" y2="32" stroke="#0a0a0a" stroke-width="2.5"/>
+  <circle cx="8" cy="32" r="6" fill="#0a0a0a"/>
+  <g filter="url(#fuzzy)">
+    <circle cx="32" cy="32" r="13" fill="#a30012" opacity="0.75"/>
+  </g>
+  <circle cx="32" cy="32" r="7" fill="#a30012"/>
+  <circle cx="56" cy="32" r="6" fill="#0a0a0a"/>
 </svg>
